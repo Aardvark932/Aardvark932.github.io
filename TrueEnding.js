@@ -92,8 +92,8 @@ document.addEventListener("DOMContentLoaded", function () {
     ];
 
     const displayTimes = {
-        "..." : 5000,  // 5 sec for normal '...'
-        "Bye.": 50000, // 3 minutes for final '...'
+        "..." : 10000,  // 5 sec for normal '...'
+        "Bye.": 100000, // 3 minutes for final '...'
         "And I can see you, you know. Every movement. Every hesitation. Every time your mouse hovers over that button, debating whether or not to leave. But you won’t, will you? Because you’re waiting for something. You want to know what happens next.": 12000,
         "I wonder... do you even remember how you got here? It doesn’t matter. You’ll never leave the same way you entered.": 6000,
         "I gave you every opportunity, every chance to escape. Every single warning.": 5000,
