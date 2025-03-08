@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     const textContainer = document.getElementById("text-container");
     const countdownContainer = document.getElementById("countdown");
-    const imageContainer = document.getElementById("image-container");
 
+    // Styling fixes
     textContainer.style.position = "absolute";
     textContainer.style.top = "50%";
     textContainer.style.left = "50%";
@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     textContainer.style.fontSize = "24px";
     textContainer.style.textAlign = "center";
     textContainer.style.width = "80%";
+    textContainer.style.lineHeight = "1.5";  // Added spacing
 
     countdownContainer.style.position = "absolute";
     countdownContainer.style.top = "55%";
@@ -19,17 +20,18 @@ document.addEventListener("DOMContentLoaded", function () {
     countdownContainer.style.color = "red";
     countdownContainer.style.fontSize = "48px";
     countdownContainer.style.fontWeight = "bold";
+    countdownContainer.style.display = "none";  // Hidden at first
 
     const messages = [
         "Yeah, Luke, I need those papers on my desk by Monday. Bye.",
         "What did I have to get? Oh yeah, I have to get some- Wait.",
-    "What?",
-    "Um...",
-    "How are you-? This is literally-",
-    "Go on, say something, then.",
-    "Oh yeah, I don't think there's a respond feature to this page.",
-    "You want to know why?",
-    "BECAUSE NOBODY IS MEANT TO BE BACK HERE.",
+        "What?",
+        "Um...",
+        "How are you-? This is literally-",
+        "Go on, say something, then.",
+        "Oh yeah, I don't think there's a respond feature to this page.",
+        "You want to know why?",
+        "BECAUSE NOBODY IS MEANT TO BE BACK HERE.",
         "I mean, how did you even get here?", 
         "I mean, you are literally in the backrooms of this website.",
         "Why would you want to leave those guys back in the other place anyway?",
@@ -62,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "You truly don't know when to quit, do you?",
         "I gave you every opportunity, every chance to escape. Every single warning.",
         "But no.",
-        "You just had to keep going. had to keep digging.",
+        "You just had to keep going. Had to keep digging.",
         "Had to keep searching for something you were never meant to find.",
         "And now look at you.",
         "Trapped.",
@@ -76,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "...Because, my dear visitor, you were never here to escape.",
         "You were here to be found.",
         "So good luck.",
-        "You will face the incomprhensible horrors that await you.",
+        "You will face the incomprehensible horrors that await you.",
         "And you will take it.",
         "Because you are weak.",
         "Too curious.",
@@ -92,27 +94,29 @@ document.addEventListener("DOMContentLoaded", function () {
     ];
 
     const displayTimes = {
-        "..." : 10000,  // 5 sec for normal '...'
-        "Bye.": 100000, // 3 minutes for final '...'
+        "...": 5000, // Pause for 5 seconds for "..."
+        "Bye.": 180000, // 3 minutes for final '...'
         "And I can see you, you know. Every movement. Every hesitation. Every time your mouse hovers over that button, debating whether or not to leave. But you won’t, will you? Because you’re waiting for something. You want to know what happens next.": 12000,
         "I wonder... do you even remember how you got here? It doesn’t matter. You’ll never leave the same way you entered.": 6000,
         "I gave you every opportunity, every chance to escape. Every single warning.": 5000,
-        "However, everything has a silver lining, unfortunately.": 5000,
-        
+        "However, everything has a silver lining, unfortunately.": 5000
     };
 
-  let index = 0;
+    let index = 0;
 
     function showNextText() {
         if (index < messages.length) {
-            textContainer.textContent = messages[index];
+            // Add new text as a paragraph (instead of replacing)
+            const newParagraph = document.createElement("p");
+            newParagraph.textContent = messages[index];
+            textContainer.appendChild(newParagraph);
 
-            let delay = displayTimes[messages[index]] || (messages[index] === "..." ? 5000 : 1200);
+            let delay = displayTimes[messages[index]] || (messages[index] === "..." ? 5000 : 2000);
             index++;
 
             setTimeout(showNextText, delay);
         } else {
-            startCountdown();
+            startCountdown(); // After text finishes, start countdown
         }
     }
 
