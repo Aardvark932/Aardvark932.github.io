@@ -62,3 +62,27 @@ li {
   color: white;
   letter-spacing: normal;
 }
+
+.leave-container {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.big-obvious-button {
+    display: block;
+    width: 200px;
+    padding: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    background-color: red;
+    border: 3px solid black;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.big-obvious-button:hover {
+    background-color: darkred;
+    transform: scale(1.1);
+}
