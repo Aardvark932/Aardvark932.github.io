@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
         message.classList.remove("hidden");
 
         setTimeout(() => {
-            message.innerHTML = `<h2>Result: <span style="color: red;">0 IQ</span></h2><p>Congratulations! You fell for the most obvious trick in the world.</p>`;
+            message.innerHTML = `<h2>Result: <span style="color: red;">0 IQ</span></h2><p>Congratulations! You fell for the most obvious trick in the world. Or... You just thought this was the 'button above'. No, there's nothing here. But They're not telling you everything, you know. The button you're looking for is further up, and i don't know what's in there, but after you've finished, there's another secret button below.</p>`;
         }, 1000);
     }
 
