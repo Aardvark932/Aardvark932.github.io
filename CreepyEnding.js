@@ -1,29 +1,33 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const words = ["GET OUT", "RUN", "GET OUT", "RUN", "GET OUT", "RUN"];
-    const numWords = 20; // Number of times the words appear
-    const container = document.body;
+    const progressBar = document.getElementById("progress");
+    const percentageText = document.getElementById("percentage");
+    const loadingText = document.getElementById("loading-text");
+    const message = document.getElementById("message");
 
-    for (let i = 0; i < numWords; i++) {
-        let word = document.createElement("div");
-        word.textContent = words[Math.floor(Math.random() * words.length)];
-        word.classList.add("scary-text");
+    let percentage = 0;
 
-        word.style.left = Math.random() * 90 + "vw";
-        word.style.top = Math.random() * 90 + "vh";
-        word.style.position = "absolute";
-        word.style.fontSize = Math.random() * 3 + 2 + "rem"; // Random sizes
+    function updateProgress() {
+        if (percentage < 100) {
+            percentage += Math.floor(Math.random() * 10) + 5; // Increase by a random value between 5-15%
+            if (percentage > 100) percentage = 100; // Ensure it doesn't go over 100
 
-        container.appendChild(word);
+            progressBar.style.width = percentage + "%";
+            percentageText.textContent = percentage + "%";
 
-        animateShake(word);
+            setTimeout(updateProgress, 500); // Speed of loading bar
+        } else {
+            showMessage();
+        }
     }
 
-    function animateShake(element) {
-        setInterval(() => {
-            let x = (Math.random() - 0.5) * 8;
-            let y = (Math.random() - 0.5) * 8;
-            let rotate = (Math.random() - 0.5) * 10;
-            element.style.transform = `translate(${x}px, ${y}px) rotate(${rotate}deg)`;
-        }, 50); // Faster, more chaotic shaking
+    function showMessage() {
+        loadingText.textContent = "Analysis Complete!";
+        message.classList.remove("hidden");
+
+        setTimeout(() => {
+            message.innerHTML = `<h2>Result: <span style="color: red;">0 IQ</span></h2><p>Congratulations! You fell for the most obvious trick in the world.</p>`;
+        }, 1000);
     }
+
+    updateProgress();
 });
