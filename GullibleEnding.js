@@ -1,35 +1,33 @@
-let progressBar = document.getElementById("progress");
-let percentageText = document.getElementById("percentage");
-let loadingText = document.getElementById("loading-text");
-let message = document.getElementById("message");
+document.addEventListener("DOMContentLoaded", function () {
+    const progressBar = document.getElementById("progress");
+    const percentageText = document.getElementById("percentage");
+    const loadingText = document.getElementById("loading-text");
+    const message = document.getElementById("message");
 
-let progress = 0;
-let messages = [
-    "Analyzing cognitive functions...",
-    "Measuring problem-solving skills...",
-    "Evaluating logical reasoning...",
-    "Processing final results..."
-];
+    let percentage = 0;
 
-let index = 0;
+    function updateProgress() {
+        if (percentage < 100) {
+            percentage += Math.floor(Math.random() * 10) + 5; // Increase by a random value between 5-15%
+            if (percentage > 100) percentage = 100; // Ensure it doesn't go over 100
 
-let interval = setInterval(() => {
-    if (progress < 100) {
-        progress += Math.floor(Math.random() * 10) + 5; // Randomized progress increments
-        if (progress > 100) progress = 100;
+            progressBar.style.width = percentage + "%";
+            percentageText.textContent = percentage + "%";
 
-        progressBar.style.width = progress + "%";
-        percentageText.innerText = progress + "%";
-
-        if (progress % 25 === 0 && index < messages.length) {
-            loadingText.innerText = messages[index];
-            index++;
+            setTimeout(updateProgress, 500); // Speed of loading bar
+        } else {
+            showMessage();
         }
-    } else {
-        clearInterval(interval);
-        loadingText.style.display = "none";
-        percentageText.style.display = "none";
-        message.classList.remove("hidden");
-        message.innerText = "Congratulations! You've waited long enough to prove... you're incredibly gullible! 😂";
     }
-}, 800);
+
+    function showMessage() {
+        loadingText.textContent = "Analysis Complete!";
+        message.classList.remove("hidden");
+
+        setTimeout(() => {
+            message.innerHTML = `<h2>Result: <span style="color: red;">0 IQ</span></h2><p>Congratulations! You fell for the most obvious trick in the world.</p>`;
+        }, 1000);
+    }
+
+    updateProgress();
+});
